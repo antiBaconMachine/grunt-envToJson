@@ -20,7 +20,7 @@ module.exports = function (grunt) {
         console.log("running %s", this.name);
         // Merge task-specific and/or target-specific options with these defaults.
         var options = this.options({
-
+            vars: {}
         });
 
         // Iterate over all specified file groups.
@@ -69,6 +69,6 @@ module.exports = function (grunt) {
                 return object;
             }
         }
-    }
+    };
 
 };
