@@ -50,7 +50,45 @@ Map of environment vars to config keys.
 
 ### Usage Examples
 
-In example above the key 'object.path.to.alter' will be set to the value of ENV_VAR
+input
+```js
+module.exports = {
+    foo: {
+        bar: 'howdy'
+    },
+    spam: {
+        eggs: {
+            parrot: "grail"
+        }
+    },
+    beer: "good"
+}
+```
+
+grunt
+```js
+envToJson: {
+    options: {
+        vars: {
+            FOO_BAR: "foo.bar",
+            PYTHONESQUE: 'spam.eggs.parrot',
+            DRINK_BEER: 'beer',
+            DYNAMIC_PROP: 'one.hundred.stones'
+        }
+    },
+    default: {
+        files: {
+            'test/out/default.js': ['test/fixtures/default.js']
+        }
+    }
+}
+```
+
+output
+```js
+{"foo":{"bar":"altered"},"spam":{"eggs":{"parrot":"altered"}},"beer":"altered","one":{"hundred":{"stones":"newProp"}}}
+```
+
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).

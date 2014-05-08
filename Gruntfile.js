@@ -28,17 +28,28 @@ module.exports = function (grunt) {
             tests: ['tmp']
         },
 
+        env: {
+            default: {
+                FOO_BAR: 'altered',
+                PYTHONESQUE: 'altered',
+                DRINK_BEER: 'altered',
+                DYNAMIC_PROP: 'newProp'
+            }
+        },
+
         // Configuration to be run (and then tested).
         envToJson: {
             options: {
                 vars: {
-                    POLLING_ENDPOINT: "polling.apiEndpoint",
-                    FOO_BAR: 'foo.bar.baz.spam.eggs.wibble'
+                    FOO_BAR: "foo.bar",
+                    PYTHONESQUE: 'spam.eggs.parrot',
+                    DRINK_BEER: 'beer',
+                    DYNAMIC_PROP: 'one.hundred.stones'
                 }
             },
-            appConfig: {
+            default: {
                 files: {
-                    '../www/scripts/config.js': ['src/scripts/config.js']
+                    'test/out/default.js': ['test/fixtures/default.js']
                 }
             }
         },
@@ -63,9 +74,9 @@ module.exports = function (grunt) {
 
     // Whenever the "test" task is run, first clean the "tmp" dir, then run this
     // plugin's task(s), then test the result.
-    grunt.registerTask('test', ['clean', 'envToJson', 'nodeunit']);
+    grunt.registerTask('test', ['env:default', 'clean', 'envToJson', 'nodeunit']);
 
     // By default, lint and run all tests.
-    grunt.registerTask('default', ['jshint']);
+    grunt.registerTask('default', ['jshint', 'test']);
 
 };
