@@ -1,6 +1,6 @@
 /*
- * grunt-envToJson
- * https://github.com/antiBaconMachine/grunt-envToJson
+ * grunt-envtojson
+ * https://github.com/antiBaconMachine/grunt-envtojson
  *
  * Copyright (c) 2014 Ollie Edwards
  * Licensed under the MIT license.
@@ -17,7 +17,7 @@ module.exports = function (grunt) {
     // Please see the Grunt documentation for more information regarding task
     // creation: http://gruntjs.com/creating-tasks
 
-    grunt.registerMultiTask('envToJson', 'Update json file with environment variable values', function () {
+    grunt.registerMultiTask('envtojson', 'Update json file with environment variable values', function () {
         // Merge task-specific and/or target-specific options with these defaults.
         options = this.options({
             vars: {},

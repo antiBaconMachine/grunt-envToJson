@@ -1,6 +1,6 @@
 /*
- * grunt-envToJson
- * https://github.com/antiBaconMachine/grunt-envToJson
+ * grunt-envtojson
+ * https://github.com/antiBaconMachine/grunt-envtojson
  *
  * Copyright (c) 2014 Ollie Edwards
  * Licensed under the MIT license.
@@ -38,7 +38,7 @@ module.exports = function (grunt) {
         },
 
         // Configuration to be run (and then tested).
-        envToJson: {
+        envtojson: {
             options: {
                 vars: {
                     FOO_BAR: "foo.bar",
@@ -74,7 +74,7 @@ module.exports = function (grunt) {
 
     // Whenever the "test" task is run, first clean the "tmp" dir, then run this
     // plugin's task(s), then test the result.
-    grunt.registerTask('test', ['env:default', 'clean', 'envToJson', 'nodeunit']);
+    grunt.registerTask('test', ['env:default', 'clean', 'envtojson', 'nodeunit']);
 
     // By default, lint and run all tests.
     grunt.registerTask('default', ['jshint', 'test']);

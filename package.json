@@ -1,23 +1,23 @@
 {
-  "name": "grunt-envToJson",
+  "name": "grunt-envtojson",
   "description": "Update json file with environment variable values",
   "version": "1.0.0",
-  "homepage": "https://github.com/antiBaconMachine/grunt-envToJson",
+  "homepage": "https://github.com/antiBaconMachine/grunt-envtojson",
   "author": {
     "name": "Ollie Edwards",
     "email": "oliver.s.edwards@gmail.com"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:antiBaconMachine/grunt-envToJson.git"
+    "url": "git@github.com:antiBaconMachine/grunt-envtojson.git"
   },
   "bugs": {
-    "url": "https://github.com/antiBaconMachine/grunt-envToJson/issues"
+    "url": "https://github.com/antiBaconMachine/grunt-envtojson/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/antiBaconMachine/grunt-envToJson/blob/master/LICENSE-MIT"
+      "url": "https://github.com/antiBaconMachine/grunt-envtojson/blob/master/LICENSE-MIT"
     }
   ],
   "engines": {

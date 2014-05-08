@@ -1,4 +1,4 @@
-# grunt-envToJson
+# grunt-envtojson
 
 > Update a json object file with environment variable values.
 
@@ -8,23 +8,23 @@ This plugin requires Grunt `~0.4.4`
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
 ```shell
-npm install grunt-envToJson --save-dev
+npm install grunt-envtojson --save-dev
 ```
 
 Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
 
 ```js
-grunt.loadNpmTasks('grunt-envToJson');
+grunt.loadNpmTasks('grunt-envtojson');
 ```
 
-## The "envToJson" task
+## The "envtojson" task
 
 ### Overview
-In your project's Gruntfile, add a section named `envToJson` to the data object passed into `grunt.initConfig()`.
+In your project's Gruntfile, add a section named `envtojson` to the data object passed into `grunt.initConfig()`.
 
 ```js
 grunt.initConfig({
-  envToJson: {
+  envtojson: {
     options: {
       vars: {
         ENV_VAR: "object.path.to.alter"
@@ -67,7 +67,7 @@ module.exports = {
 
 grunt
 ```js
-envToJson: {
+envtojson: {
     options: {
         vars: {
             FOO_BAR: "foo.bar",
