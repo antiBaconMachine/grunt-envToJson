@@ -45,6 +45,12 @@ grunt.initConfig({
 Type: `Object`
 Default value: `{}`
 
+### options.assignToVar
+Type: `String`
+Default value: 'module.exports'
+
+Assign the output to this var. Pass a falsy value to just get the json;
+
 Map of environment vars to config keys.
 
 
@@ -86,7 +92,7 @@ envtojson: {
 
 output
 ```js
-{"foo":{"bar":"altered"},"spam":{"eggs":{"parrot":"altered"}},"beer":"altered","one":{"hundred":{"stones":"newProp"}}}
+module.exports={"foo":{"bar":"altered"},"spam":{"eggs":{"parrot":"altered"}},"beer":"altered","one":{"hundred":{"stones":"newProp"}}};
 ```
 
 
