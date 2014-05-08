@@ -52,6 +52,14 @@ module.exports = function (grunt) {
                     'tmp/default.js': ['test/fixtures/default.js']
                 }
             },
+            noWhiteSpace: {
+                options: {
+                    whiteSpace: 0
+                },
+                files: {
+                    'tmp/noWhiteSpace.js': ['test/fixtures/default.js']
+                }
+            },
             assignToVar: {
                 options: {
                     assignToVar: 'config'
@@ -82,7 +90,7 @@ module.exports = function (grunt) {
 
     // Whenever the "test" task is run, first clean the "tmp" dir, then run this
     // plugin's task(s), then test the result.
-    grunt.registerTask('test', ['env:default', 'clean', 'envtojson', 'nodeunit', 'clean']);
+    grunt.registerTask('test', ['env:default', 'clean', 'envtojson', 'nodeunit', ]);
 
     // By default, lint and run all tests.
     grunt.registerTask('default', ['jshint', 'test']);

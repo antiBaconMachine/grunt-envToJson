@@ -46,5 +46,15 @@ exports.envtojson = {
         test.equal(actual, expected, 'plain javascript object with altered/created keys output');
 
         test.done();
+    },
+
+    noWhiteSpace: function (test) {
+        test.expect(1);
+
+        var actual = grunt.file.read('tmp/noWhiteSpace.js');
+        var expected = grunt.file.read('test/expected/noWhiteSpace.js');
+        test.equal(actual, expected, 'plain javascript object with altered/created keys no whitespace output');
+
+        test.done();
     }
 };

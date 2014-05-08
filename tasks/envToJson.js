@@ -21,7 +21,8 @@ module.exports = function (grunt) {
         // Merge task-specific and/or target-specific options with these defaults.
         options = this.options({
             vars: {},
-            assignToVar: 'module.exports'
+            assignToVar: 'module.exports',
+            whiteSpace: 4
         });
 
         // Iterate over all specified file groups.
@@ -38,7 +39,7 @@ module.exports = function (grunt) {
                 // Read file source.
                 var modulePath = path.resolve(filepath);
                 var js = require(modulePath);
-                writeFile(f, JSON.stringify(updateValues(js, options.vars)), options.assignToVar);
+                writeFile(f, JSON.stringify(updateValues(js, options.vars), null, (options.whiteSpace)), options.assignToVar);
             });
         });
     });

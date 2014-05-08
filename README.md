@@ -44,15 +44,19 @@ grunt.initConfig({
 #### options.vars
 Type: `Object`
 Default value: `{}`
+Description Map of environment variables to the json keys they should be injected into
 
 ### options.assignToVar
 Type: `String`
 Default value: 'module.exports'
+Description Assign the output to this var. Pass a falsy value to just get the json;
 
-Assign the output to this var. Pass a falsy value to just get the json;
+### options.whiteSpace
+Type `Int`
+Default value: 4
+Description passed as the 3rd arg to JSON.stringify when writing out the object;
 
 Map of environment vars to config keys.
-
 
 ### Usage Examples
 
@@ -81,6 +85,7 @@ envtojson: {
             DRINK_BEER: 'beer',
             DYNAMIC_PROP: 'one.hundred.stones'
         }
+        whiteSpace: 0
     },
     default: {
         files: {
