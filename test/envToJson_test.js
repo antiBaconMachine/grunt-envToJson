@@ -31,15 +31,20 @@ exports.envtojson = {
     default_options: function (test) {
         test.expect(1);
 
-        var actual = grunt.file.read('test/out/default.js');
+        var actual = grunt.file.read('tmp/default.js');
         var expected = grunt.file.read('test/expected/default.js');
         test.equal(actual, expected, 'plain javascript object with altered/created keys output');
 
         test.done();
     },
 
-    tearDown: function (done) {
-        grunt.file.delete('test/out');
-        done();
+    assignToVar: function (test) {
+        test.expect(1);
+
+        var actual = grunt.file.read('tmp/assignToVar.js');
+        var expected = grunt.file.read('test/expected/assignToVar.js');
+        test.equal(actual, expected, 'plain javascript object with altered/created keys output');
+
+        test.done();
     }
 };

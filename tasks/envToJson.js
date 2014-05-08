@@ -21,7 +21,7 @@ module.exports = function (grunt) {
         // Merge task-specific and/or target-specific options with these defaults.
         options = this.options({
             vars: {},
-            autoCreate: true
+            assignToVar: 'module.exports'
         });
 
         // Iterate over all specified file groups.
@@ -38,7 +38,7 @@ module.exports = function (grunt) {
                 // Read file source.
                 var modulePath = path.resolve(filepath);
                 var js = require(modulePath);
-                grunt.file.write(f.dest, JSON.stringify(updateValues(js, options.vars)));
+                writeFile(f, JSON.stringify(updateValues(js, options.vars)), options.assignToVar);
             });
         });
     });
@@ -64,6 +64,16 @@ module.exports = function (grunt) {
                 return object;
             }
         }
+    };
+
+    var writeFile = function(file, content, assignToVar) {
+        if (assignToVar) {
+            content = _.template("<%=assignToVar%>=<%=content%>;")({
+                content: content,
+                assignToVar: assignToVar
+            });
+        }
+        grunt.file.write(file.dest, content);
     };
 
 };
