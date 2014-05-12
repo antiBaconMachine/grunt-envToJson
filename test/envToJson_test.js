@@ -56,5 +56,15 @@ exports.envtojson = {
         test.equal(actual, expected, 'plain javascript object with altered/created keys no whitespace output');
 
         test.done();
+    },
+
+    dynamic: function(test) {
+        test.expect(1);
+
+        var actual = grunt.file.read('tmp/dynamicReplacement.js');
+        var expected = grunt.file.read('test/expected/dynamicReplacement.js');
+        test.equal(actual, expected, 'plain javascript object with first key dynamically altered');
+
+        test.done();
     }
 };

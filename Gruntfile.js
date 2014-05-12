@@ -67,6 +67,21 @@ module.exports = function (grunt) {
                 files: {
                     'tmp/assignToVar.js': ['test/fixtures/default.js']
                 }
+            },
+            dynamicReplacement: {
+                options: {
+                    vars: {
+                        FOO_BAR: {
+                            key: 'foo.bar',
+                            callback : function(newV, oldV) {
+                                return oldV + ' ' + newV;
+                            }
+                        }
+                    }
+                },
+                files: {
+                    'tmp/dynamicReplacement.js': ['test/fixtures/default.js']
+                }
             }
         },
 
@@ -90,7 +105,7 @@ module.exports = function (grunt) {
 
     // Whenever the "test" task is run, first clean the "tmp" dir, then run this
     // plugin's task(s), then test the result.
-    grunt.registerTask('test', ['env:default', 'clean', 'envtojson', 'nodeunit', ]);
+    grunt.registerTask('test', ['env:default', 'clean', 'envtojson', 'nodeunit', 'clean']);
 
     // By default, lint and run all tests.
     grunt.registerTask('default', ['jshint', 'test']);

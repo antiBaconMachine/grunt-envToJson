@@ -1,4 +1,4 @@
-module.exports={
+{
     "foo": {
         "bar": "altered"
     },
@@ -13,4 +13,4 @@ module.exports={
             "stones": "newProp"
         }
     }
-};
+}

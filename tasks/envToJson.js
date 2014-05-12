@@ -21,7 +21,7 @@ module.exports = function (grunt) {
         // Merge task-specific and/or target-specific options with these defaults.
         options = this.options({
             vars: {},
-            assignToVar: 'module.exports',
+            assignToVar: false,
             whiteSpace: 4
         });
 
@@ -38,43 +38,53 @@ module.exports = function (grunt) {
             }).map(function (filepath) {
                 // Read file source.
                 var modulePath = path.resolve(filepath);
-                var js = require(modulePath);
-                writeFile(f, JSON.stringify(updateValues(js, options.vars), null, (options.whiteSpace)), options.assignToVar);
+                var js = _.clone(require(modulePath), true);
+                writeFile(f.dest, JSON.stringify(updateValues(js, options.vars), null, (options.whiteSpace)), options.assignToVar);
             });
         });
     });
 
     var updateValues = function (js, vars) {
-        _.each(vars, function (path, key) {
+        _.each(vars, function (replace, key) {
             var val = process.env[key];
             if (val) {
-                js = updateValue(js, path.split('.'), val) || js;
+                var keyPath, cb;
+                if (typeof replace === 'string') {
+                    keyPath = replace;
+                    cb = function(newV, oldV) {
+                        return newV;
+                    };
+                } else {
+                    keyPath = replace.key;
+                    cb = replace.callback;
+                }
+                js = updateValue(js, keyPath.split('.'), _.bind(cb, this, val)) || js;
             }
         });
         return js;
     };
 
-    var updateValue = function (object, segments, val) {
+    var updateValue = function (object, segments, cb) {
         if (object && segments.length) {
             var segment = segments.shift();
             if (segments.length === 0) {
-                object[segment] = val;
+                object[segment] = cb(object[segment]);
                 return object;
             } else {
-                object[segment] = updateValue((object[segment] || {}), segments, val);
+                object[segment] = updateValue((object[segment] || {}), segments, cb);
                 return object;
             }
         }
     };
 
-    var writeFile = function(file, content, assignToVar) {
+    var writeFile = function(dest, content, assignToVar) {
         if (assignToVar) {
             content = _.template("<%=assignToVar%>=<%=content%>;")({
                 content: content,
                 assignToVar: assignToVar
             });
         }
-        grunt.file.write(file.dest, content);
+        grunt.file.write(dest, content);
     };
 
 };
