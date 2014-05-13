@@ -44,17 +44,17 @@ grunt.initConfig({
 #### options.vars
 Type: `Object`
 Default value: `{}`
-Description Map of environment variables to the json keys they should be injected into
+Description Map of environment variables to the json keys they should be injected into.
 
 ### options.assignToVar
 Type: `String`
-Default value: 'module.exports'
-Description Assign the output to this var. Pass a falsy value to just get the json;
+Default value: false
+Description Assign the output to this var. Pass a falsy value to just get the json.
 
 ### options.whiteSpace
 Type `Int`
 Default value: 4
-Description passed as the 3rd arg to JSON.stringify when writing out the object;
+Description Passed as the 3rd arg to JSON.stringify when writing out the object. Pass 0 for no formatting.
 
 Map of environment vars to config keys.
 
@@ -62,7 +62,7 @@ Map of environment vars to config keys.
 
 input
 ```js
-module.exports = {
+{
     foo: {
         bar: 'howdy'
     },
@@ -87,22 +87,55 @@ envtojson: {
         }
         whiteSpace: 0
     },
-    default: {
+    mytask: {
         files: {
-            'test/out/default.js': ['test/fixtures/default.js']
+            'tmp/default.js': ['test/fixtures/default.js']
+        },
+        options: {
+            assignToVar: 'config'
         }
     }
 }
 ```
 
-output
-```js
-module.exports={"foo":{"bar":"altered"},"spam":{"eggs":{"parrot":"altered"}},"beer":"altered","one":{"hundred":{"stones":"newProp"}}};
+Now set some shell vars and run
+
+```bash
+FOO_BAR=altered PYTHONESQUE=altered DRINK_BEER=altered DYNAMIC_PROP=newProp grunt envToson
 ```
 
+output
+```js
+config="foo": {
+        "bar": "altered"
+    },
+    "spam": {
+        "eggs": {
+            "parrot": "altered"
+        }
+    },
+    "beer": "altered",
+    "one": {
+        "hundred": {
+            "stones": "newProp"
+        }
+    }
+};
+```
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
-_(Nothing yet)_
+2.0.1
+*Amend readme which I forgot to update for 2.0.0
+
+2.0.0
+*Change default value of assignToVar to false (was module.exports). breaking change.
+
+1.0.1
+*Add assignToVar option to assign output to an arbitrary variable
+*Add whiteSpace option to format the generated json
+
+1.0.0
+*first public release
