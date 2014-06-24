@@ -48,6 +48,7 @@ module.exports = function (grunt) {
         _.each(vars, function (replace, key) {
             var val = process.env[key];
             if (val) {
+                val = typeSafe(val);
                 var keyPath, cb;
                 if (typeof replace === 'string') {
                     keyPath = replace;
@@ -85,6 +86,22 @@ module.exports = function (grunt) {
             });
         }
         grunt.file.write(dest, content);
+    };
+
+    var typeSafe = function(val) {
+        if (val) {
+            var asInt = parseInt(val);
+            if (!isNaN(asInt)) {
+                return asInt;
+            }
+            var aslowerCase = val.toLowerCase();
+            if (aslowerCase === 'true') {
+                return true;
+            } else if (aslowerCase === 'false') {
+                return false;
+            }
+        }
+        return val;
     };
 
 };

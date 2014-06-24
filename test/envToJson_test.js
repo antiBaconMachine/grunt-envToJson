@@ -66,5 +66,15 @@ exports.envtojson = {
         test.equal(actual, expected, 'plain javascript object with first key dynamically altered');
 
         test.done();
+    },
+
+    typeSafe: function(test) {
+        test.expect(1);
+
+        var actual = grunt.file.read('tmp/typeSafety.json');
+        var expected = grunt.file.read('test/expected/typeSafety.json');
+        test.equal(actual, expected, 'json with boolean and int');
+
+        test.done();
     }
 };

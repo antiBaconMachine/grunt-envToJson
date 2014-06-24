@@ -33,7 +33,9 @@ module.exports = function (grunt) {
                 FOO_BAR: 'altered',
                 PYTHONESQUE: 'altered',
                 DRINK_BEER: 'altered',
-                DYNAMIC_PROP: 'newProp'
+                DYNAMIC_PROP: 'newProp',
+                FOO: false,
+                BAR: 21
             }
         },
 
@@ -81,6 +83,17 @@ module.exports = function (grunt) {
                 },
                 files: {
                     'tmp/dynamicReplacement.js': ['test/fixtures/default.js']
+                }
+            },
+            typeSafety: {
+                options: {
+                    vars: {
+                        FOO: 'foo',
+                        BAR: 'bar'
+                    }
+                },
+                files: {
+                    'tmp/typeSafety.json': ['test/fixtures/typeSafety.json']
                 }
             }
         },
