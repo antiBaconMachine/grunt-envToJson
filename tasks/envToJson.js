@@ -90,9 +90,9 @@ module.exports = function (grunt) {
 
     var typeSafe = function(val) {
         if (val) {
-            var asInt = parseInt(val);
-            if (!isNaN(asInt)) {
-                return asInt;
+            var asFloat = parseFloat(val);
+            if (!isNaN(asFloat)) {
+                return asFloat;
             }
             var aslowerCase = val.toLowerCase();
             if (aslowerCase === 'true') {
